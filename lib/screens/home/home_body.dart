@@ -5,13 +5,14 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.0),
-      child: Center(
-          child: Text(
-        "Home",
-        style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-      )),
-    );
+    return TabBarView(children: [
+      Icon(Icons.flight, size: 350),
+      Icon(Icons.directions_transit, size: 350),
+      Icon(Icons.directions_car, size: 350),
+      Icon(Icons.flight, size: 350),
+      Icon(Icons.directions_transit, size: 350),
+      Icon(Icons.directions_car, size: 350),
+      Icon(Icons.directions_car, size: 350),
+    ]);
   }
 }

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_news/components/app_bar.dart';
-import 'package:my_news/components/bottom_nav.dart';
-import 'package:my_news/components/nav_drawer.dart';
 import 'package:my_news/constants.dart';
 
 import 'components/unlike_methods.dart';
@@ -10,37 +7,19 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   static ValueNotifier<int> selectedMenu = ValueNotifier<int>(0);
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My News',
-      home: Builder(builder: (context) {
-        return Scaffold(
-          appBar: myAppBar(context),
-          bottomNavigationBar: const MyBottomNavBar(),
-          drawer: const NavigationDrawer(),
-          drawerEnableOpenDragGesture: false,
-          body: ValueListenableBuilder(
-            builder: (BuildContext context, value, Widget? child) =>
-                pages.elementAt(MyApp.selectedMenu.value),
-            valueListenable: MyApp.selectedMenu,
-          ),
-        );
-      }),
+      home: ValueListenableBuilder(
+        valueListenable: MyApp.selectedMenu,
+        builder: (BuildContext context, int value, Widget? child) =>
+            screens.elementAt(MyApp.selectedMenu.value),
+      ),
       theme: ThemeData(
           scaffoldBackgroundColor: kBackgroundColor,
           primarySwatch: buildMaterialColor(kPrimaryColor),
